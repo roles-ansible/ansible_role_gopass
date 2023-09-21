@@ -1,0 +1,39 @@
+---
+- name: Update apt cache
+  become: true
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+
+- name: Adding Gopass Package Repository
+  when: gopass__add_apt_repo | bool
+  block:
+    - name: Add Gopass archive keyring
+      ansible.builtin.get_url:
+        url: https://packages.gopass.pw/repos/gopass/gopass-archive-keyring.gpg
+        dest: "{{ gopass__keyring }}"
+        owner: root
+        group: root
+        mode: 0644
+      become: true
+
+    - name: Add Gopass repository source
+      become: true
+      ansible.builtin.template:
+        src: "templates/apt.gopass.sources.j2"
+        dest: '/etc/apt/sources.list.d/gopass.sources'
+        mode: 0644
+        group: root
+        owner: root
+      notify: Trigger apt update
+
+    - name: Trigger Handlers
+      ansible.builtin.meta: flush_handlers
+
+    - name: Install Gopass and Gopass archive keyring
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      become: true
+      with_items:
+        - gopass-archive-keyring
+        - gopass
