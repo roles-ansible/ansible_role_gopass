@@ -1,3 +1,4 @@
 ---
+gopass__add_apt_repo: true
 # should we do a version check? (recomended)
 submodules_versioncheck: false
