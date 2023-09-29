@@ -4,7 +4,7 @@
   ansible.builtin.apt:
     cache_valid_time: 3600
 
-- name: Add reuirements for gopass
+- name: Install requirements for gopass
   become: true
   ansible.builtin.apt:
     name: "{{ item }}"
@@ -13,6 +13,8 @@
     - git
     - gnupg2
     - rng-tools
+    - xsel
+    - xclip
 
 - name: Adding Gopass Package Repository
   when: gopass__add_apt_repo | bool

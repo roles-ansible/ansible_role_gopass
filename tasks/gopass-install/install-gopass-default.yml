@@ -1,0 +1,38 @@
+---
+- name: Install requirements for gopass
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - git
+    - gnupg2
+    - rng-tools
+    - xsel
+    - xclip
+
+- name: Install Gopass
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - gopass
+
+- name: Install gopass-jsonapi for browser integration
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - gopass-jsonapi
+  when: gopass__install_jsonapi | bool
+
+- name: Install gopass-hibp for haveibeenpwnd.com integration
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - gopass-hibp
+  when: gopass__install_haveibeenpwnd | bool
