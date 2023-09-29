@@ -13,3 +13,7 @@ This role will only install the gopass passwordmanager. You have to configure an
 | ``gopass__add_apt_repo`` | ``true`` | Install Gopass keyring and apt list on debian based Systems |
 | ``gopass__install_jsonapi`` | ``true`` | Install gopass-jsonapi integration for browser integration |
 | ``gopass__install_haveibeenpwnd`` | ``true`` | Install haveibeenpwnd.com integration |
+| ``gopass__install_git_credential`` | ``true`` | Install haveibeenpwnd.com integration |
+
+## Contributing
+Please feel free to open a issue. Or suggest changes and improvements via Pull-Requerst. I will be happy to have a look at it.
