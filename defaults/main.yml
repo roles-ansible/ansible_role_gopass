@@ -1,4 +1,7 @@
 ---
 gopass__add_apt_repo: true
+
+gopass__install_jsonapi: true
+gopass__install_haveibeenpwnd: true
 # should we do a version check? (recomended)
 submodules_versioncheck: false
