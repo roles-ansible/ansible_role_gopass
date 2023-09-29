@@ -16,4 +16,4 @@ This role will only install the gopass passwordmanager. You have to configure an
 | ``gopass__install_git_credential`` | ``true`` | Install haveibeenpwnd.com integration |
 
 ## Contributing
-Please feel free to open a issue. Or suggest changes and improvements via Pull-Requerst. I will be happy to have a look at it.
+Please feel free to open a issue. Or suggest changes and improvements via Pull-Request. I will be happy to have a look at it.
