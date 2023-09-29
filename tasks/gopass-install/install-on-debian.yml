@@ -67,3 +67,12 @@
       with_items:
         - gopass-hibp
       when: gopass__install_haveibeenpwnd | bool
+
+    - name: Install git-credential-gopass as git-credentials helper
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      become: true
+      with_items:
+        - git-credential-gopass
+      when: gopass__install_git_credential | bool

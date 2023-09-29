@@ -1,18 +1,20 @@
 ---
 - name: Install requirements for gopass
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
+    update_cache: true
   with_items:
     - git
     - gnupg
     - rng-tools
     - xsel
     - xclip
+    - xorg-xclipboard
 
 - name: Install Gopass
-  ansible.builtin.package:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   become: true
@@ -20,7 +22,7 @@
     - gopass
 
 - name: Install gopass-jsonapi for browser integration
-  ansible.builtin.package:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   become: true
@@ -29,7 +31,7 @@
   when: gopass__install_jsonapi | bool
 
 - name: Install gopass-hibp for haveibeenpwnd.com integration
-  ansible.builtin.package:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   become: true
@@ -38,7 +40,7 @@
   when: gopass__install_haveibeenpwnd | bool
 
 - name: Install git-credential-gopass as git-credentials helper
-  ansible.builtin.package:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   become: true
