@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'checkout git repo'
-        uses: actions/checkout@v41.0
+        uses: actions/checkout@v4.1.0
 
       - name: Ansible Publish
         uses: ansible/ansible-publish-action@v1.0.0
