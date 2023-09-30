@@ -1,5 +1,5 @@
 ---
 gopass__keyring: /usr/share/keyrings/gopass-archive-keyring.gpg
 # versionscheck
-playbook_version_number: 02   # should be a integer
+playbook_version_number: 03   # should be a integer
 playbook_version_path: 'l3d.gopass.version'

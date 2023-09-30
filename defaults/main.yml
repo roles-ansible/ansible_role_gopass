@@ -4,5 +4,7 @@ gopass__add_apt_repo: true
 gopass__install_jsonapi: true
 gopass__install_haveibeenpwnd: true
 gopass__install_git_credential: false
+gopass__install_zbar_tools: true
+
 # should we do a version check? (recomended)
 submodules_versioncheck: false
