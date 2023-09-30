@@ -76,3 +76,12 @@
       with_items:
         - git-credential-gopass
       when: gopass__install_git_credential | bool
+
+    - name: Install zbar-tools for QR CodeReading using OTP Secrets
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      become: true
+      with_items:
+        - zbar-tools
+      when: gopass__install_zbar_tools | bool
