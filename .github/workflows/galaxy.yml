@@ -13,10 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'checkout git repo'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v41.0
 
-      - name: 'release on galaxy'
-        uses: robertdebock/galaxy-action@1.2.1
+      - name: Ansible Publish
+        uses: ansible/ansible-publish-action@v1.0.0
         with:
-          galaxy_api_key: ${{ secrets.galaxy_api_key }}
-          git_branch: 'main'
+          api_key: ${{ secrets.galaxy_api_key }}
+          src_path: .
+          api_server: https://galaxy.ansible.com/
