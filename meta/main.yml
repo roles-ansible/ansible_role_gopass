@@ -2,6 +2,7 @@
 galaxy_info:
   role_name: gopass
   author: l3d
+  namespace: l3d
   description: Ansile role to install the Password Manager gopass.
   license: "MIT"
   min_ansible_version: '2.15'
