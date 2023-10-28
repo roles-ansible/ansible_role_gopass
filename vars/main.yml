@@ -1,5 +1,34 @@
 ---
-gopass__keyring: /usr/share/keyrings/gopass-archive-keyring.gpg
-# versionscheck
-playbook_version_number: 03   # should be a integer
+gopass__keyring: '/usr/share/keyrings/gopass-archive-keyring.gpg'
+gopass_install:
+  files:
+    - "install-on-{{ ansible_os_family | lower }}.yml"
+    - 'install-gopass-default.yml'
+  paths:
+    - 'tasks/gopass-install'
+
+gopass__required_packages:
+  - git
+  - gnupg
+  - rng-tools
+  - xsel
+  - xclip
+
+gopass__required_debian_packages:
+  - git
+  - gnupg2
+  - rng-tools
+  - xsel
+  - xclip
+
+gopass__required_archlinux_packages:
+  - git
+  - gnupg
+  - rng-tools
+  - xsel
+  - xclip
+  - xorg-xclipboard
+
+# simple versionscheck
+playbook_version_number: 04
 playbook_version_path: 'l3d.gopass.version'

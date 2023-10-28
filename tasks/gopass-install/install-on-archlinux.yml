@@ -1,58 +1,52 @@
 ---
-- name: Install requirements for gopass
+- name: Install requirements for gopass  # noqa: H1901
   become: true
   community.general.pacman:
     name: "{{ item }}"
-    state: present
+    state: 'present'
     update_cache: true
-  with_items:
-    - git
-    - gnupg
-    - rng-tools
-    - xsel
-    - xclip
-    - xorg-xclipboard
+  loop: "{{ gopass__required_archlinux_packages }}"
 
-- name: Install Gopass
+- name: Install Gopass  # noqa: H1901
   community.general.pacman:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - gopass
+  loop:
+    - 'gopass'
 
-- name: Install gopass-jsonapi for browser integration
+- name: Install gopass-jsonapi for browser integration  # noqa: H1901
   community.general.pacman:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - gopass-jsonapi
+  loop:
+    - 'gopass-jsonapi'
   when: gopass__install_jsonapi | bool
 
-- name: Install gopass-hibp for haveibeenpwnd.com integration
+- name: Install gopass-hibp for haveibeenpwnd.com integration  # noqa: H1901
   community.general.pacman:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - gopass-hibp
+  loop:
+    - 'gopass-hibp'
   when: gopass__install_haveibeenpwnd | bool
 
-- name: Install git-credential-gopass as git-credentials helper
+- name: Install git-credential-gopass as git-credentials helper  # noqa: H1901
   community.general.pacman:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - git-credential-gopass
+  loop:
+    - 'git-credential-gopass'
   when: gopass__install_git_credential | bool
 
-- name: Install zbar-tools for QR CodeReading using OTP Secrets
+- name: Install zbar-tools for QR CodeReading using OTP Secrets  # noqa: H1901
   community.general.pacman:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - zbar-tools
+  loop:
+    - 'zbar-tools'
   when: gopass__install_zbar_tools | bool

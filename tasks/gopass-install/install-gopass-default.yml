@@ -3,54 +3,49 @@
   become: true
   ansible.builtin.package:
     name: "{{ item }}"
-    state: present
-  with_items:
-    - git
-    - gnupg
-    - rng-tools
-    - xsel
-    - xclip
+    state: 'present'
+  loop: "{{ gopass__required_packages }}"
 
 - name: Install Gopass
   ansible.builtin.package:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - gopass
+  loop:
+    - 'gopass'
 
 - name: Install gopass-jsonapi for browser integration
   ansible.builtin.package:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - gopass-jsonapi
+  loop:
+    - 'gopass-jsonapi'
   when: gopass__install_jsonapi | bool
 
 - name: Install gopass-hibp for haveibeenpwnd.com integration
   ansible.builtin.package:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - gopass-hibp
+  loop:
+    - 'gopass-hibp'
   when: gopass__install_haveibeenpwnd | bool
 
 - name: Install git-credential-gopass as git-credentials helper
   ansible.builtin.package:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - git-credential-gopass
+  loop:
+    - 'git-credential-gopass'
   when: gopass__install_git_credential | bool
 
 - name: Install zbar-tools for QR CodeReading using OTP Secrets
   ansible.builtin.package:
     name: "{{ item }}"
-    state: present
+    state: 'present'
   become: true
-  with_items:
-    - zbar-tools
+  loop:
+    - 'zbar-tools'
   when: gopass__install_zbar_tools | bool
