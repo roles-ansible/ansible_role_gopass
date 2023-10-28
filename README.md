@@ -17,5 +17,12 @@ This role will only install the gopass passwordmanager. You have to configure an
 | ``gopass__install_zbar_tools`` | ``true`` | Install optional zbar tooling to read qrcodes |
 | ``submodules_versioncheck`` | ``false`` | Run optional versionscheck to prevent old versions of tis ansible |
 
+## Requirements
+The ``community.general`` collection is required for some parts of this ansible role.
+You can install it with this command:
+```bash
+ansible-galaxy collection install -r requirements.yml --upgrade
+```
+
 ## Contributing
 Please feel free to open a issue. Or suggest changes and improvements via Pull-Request. I will be happy to have a look at it.
