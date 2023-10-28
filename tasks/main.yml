@@ -1,14 +1,9 @@
 ---
 - name: Run optional versionscheck
-  ansible.builtin.include_tasks: versioncheck.yml
+  ansible.builtin.include_tasks:
+    file: versioncheck.yml
   when: submodules_versioncheck | bool
 
 - name: Install GoPass Packages
-  ansible.builtin.include_tasks: "{{ lookup('ansible.builtin.first_found', gopass_install) }}"
-  vars:
-    gopass_install:
-      files:
-        - "install-on-{{ ansible_os_family | lower }}.yml"
-        - 'install-gopass-default.yml'
-      paths:
-        - 'tasks/gopass-install'
+  ansible.builtin.include_tasks:
+    file: "{{ lookup('ansible.builtin.first_found', gopass_install) }}"

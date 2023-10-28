@@ -9,12 +9,7 @@
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
-  with_items:
-    - git
-    - gnupg2
-    - rng-tools
-    - xsel
-    - xclip
+  loop: "{{ gopass__required_debian_packages }}"
 
 - name: Adding Gopass Package Repository
   when: gopass__add_apt_repo | bool
@@ -23,9 +18,9 @@
       ansible.builtin.get_url:
         url: https://packages.gopass.pw/repos/gopass/gopass-archive-keyring.gpg
         dest: "{{ gopass__keyring }}"
-        owner: root
-        group: root
-        mode: 0644
+        owner: 'root'
+        group: 'root'
+        mode: '0644'
       become: true
 
     - name: Add Gopass repository source
@@ -33,9 +28,9 @@
       ansible.builtin.template:
         src: "templates/apt.gopass.sources.j2"
         dest: '/etc/apt/sources.list.d/gopass.sources'
-        mode: 0644
-        group: root
-        owner: root
+        mode: '0644'
+        group: 'root'
+        owner: 'root'
       notify: Trigger apt update
 
     - name: Trigger Handlers
@@ -44,44 +39,44 @@
     - name: Install Gopass and Gopass archive keyring
       ansible.builtin.apt:
         name: "{{ item }}"
-        state: present
+        state: 'present'
       become: true
-      with_items:
-        - gopass-archive-keyring
-        - gopass
+      loop:
+        - 'gopass-archive-keyring'
+        - 'gopass'
 
     - name: Install gopass-jsonapi for browser integration
       ansible.builtin.apt:
         name: "{{ item }}"
-        state: present
+        state: 'present'
       become: true
-      with_items:
-        - gopass-jsonapi
+      loop:
+        - 'gopass-jsonapi'
       when: gopass__install_jsonapi | bool
 
     - name: Install gopass-hibp for haveibeenpwnd.com integration
       ansible.builtin.apt:
         name: "{{ item }}"
-        state: present
+        state: 'present'
       become: true
-      with_items:
-        - gopass-hibp
+      loop:
+        - 'gopass-hibp'
       when: gopass__install_haveibeenpwnd | bool
 
     - name: Install git-credential-gopass as git-credentials helper
       ansible.builtin.apt:
         name: "{{ item }}"
-        state: present
+        state: 'present'
       become: true
-      with_items:
-        - git-credential-gopass
+      loop:
+        - 'git-credential-gopass'
       when: gopass__install_git_credential | bool
 
     - name: Install zbar-tools for QR CodeReading using OTP Secrets
       ansible.builtin.apt:
         name: "{{ item }}"
-        state: present
+        state: 'present'
       become: true
-      with_items:
-        - zbar-tools
+      loop:
+        - 'zbar-tools'
       when: gopass__install_zbar_tools | bool
