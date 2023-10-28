@@ -1,4 +1,4 @@
-[![Ansible Galaxy](https://ansible.l3d.space/svg/l3d.gopass.svg)](https://galaxy.ansible.com/l3d/gopass)
+[![Ansible Galaxy](https://ansible.l3d.space/svg/l3d.gopass.svg)](https://galaxy.ansible.com/ui/standalone/roles/roles-ansible/gopass/)
 [![MIT License](https://ansible.l3d.space/svg/l3d.gopass_license.svg)](LICENSE)
 [![Maintainance](https://ansible.l3d.space/svg/l3d.gopass_maintainance.svg)](https://ansible.l3d.space/#l3d.gopass)
 # Gopass Ansible Rolle
